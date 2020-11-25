@@ -16,11 +16,12 @@ import (
 // CategoryList は楽天レシピAPIからカテゴリ情報を取得し、格納する構造体
 type CategoryList struct {
 	Result struct {
-		Small []struct {
-			CategoryName     string `json:"categoryName"`
-			ParentCategoryID string `json:"parentCategoryId"`
-			CategoryID       int    `json:"categoryId"`
-		} `json:"small"`
+		// Smallいらないかも
+		// Small []struct {
+		// 	CategoryName     string `json:"categoryName"`
+		// 	ParentCategoryID string `json:"parentCategoryId"`
+		// 	CategoryID       int    `json:"categoryId"`
+		// } `json:"small"`
 		Medium []struct {
 			CategoryName     string `json:"categoryName"`
 			ParentCategoryID string `json:"parentCategoryId"`
@@ -33,12 +34,7 @@ type CategoryList struct {
 	} `json:"result"`
 }
 
-func main() {
-	categoryList := getCategoryInfo()
-	insertCategoryInfo(categoryList)
-}
-
-func getCategoryInfo() CategoryList {
+func getCategoryData() CategoryList {
 	url := "https://app.rakuten.co.jp/services/api/Recipe/CategoryList/20170426"
 	request, err := http.NewRequest("GET", url, nil)
 	if err != nil {
@@ -72,14 +68,14 @@ func getCategoryInfo() CategoryList {
 	return cl
 }
 
-func insertCategoryInfo(cl CategoryList) {
+func insertCategoryData(cl CategoryList) {
 	db, err := sql.Open("mysql", "admin:"+os.Getenv("RDS_PASS")+"@tcp(database-1.cop2pvzm3623.ap-northeast-1.rds.amazonaws.com)/groupwork_db")
 	if err != nil {
 		panic(err.Error())
 	}
 	defer db.Close()
 
-	stmtInsert, err := db.Prepare("INSERT INTO category(category_id, category_name, parent_category_id) VALUES(?, ?, ?)")
+	stmtInsert, err := db.Prepare("INSERT INTO category_list(category_id, category_name, parent_category_id) VALUES(?, ?, ?)")
 	if err != nil {
 		panic(err.Error())
 	}
@@ -120,4 +116,8 @@ func insertCategoryInfo(cl CategoryList) {
 
 		fmt.Println(id, name)
 	}
+}
+func main() {
+	categoryList := getCategoryData()
+	insertCategoryData(categoryList)
 }
