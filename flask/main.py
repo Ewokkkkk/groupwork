@@ -26,7 +26,8 @@ def result():
                 name = request.args.get("name")
             sql = """SELECT recipe.title FROM recipe JOIN material_recipe ON 
             recipe.recipe_id = material_recipe.recipe_id JOIN material ON material_recipe.material_id
-            = material.material_id WHERE material.material_name = %s"""
+            = material.material_id WHERE material.material_name = %s 
+            GROUP BY recipe.title"""
             cursor.execute(sql, name)
             cursor.close()
         # Select結果を取り出す
