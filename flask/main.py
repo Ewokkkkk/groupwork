@@ -62,8 +62,7 @@ def recipe():
             cursor.close()
         # Select結果を取り出す
         results = cursor.fetchall()
-        for i in results:
-            print(i)
+
         return render_template("recipe.html", results=results)
     finally:
         connection.close()
