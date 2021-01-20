@@ -1,0 +1,100 @@
+<!DOCTYPE html>
+<html lang="ja">
+
+<head>
+    <!-- Required meta tags -->
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <script type="text/javascript" src="https://code.jquery.com/jquery-3.4.1.min.js"></script>
+
+    <!-- Bootstrap CSS -->
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.0/css/bootstrap.min.css"
+        integrity="sha384-9aIt2nRpC12Uk9gS9baDl411NQApFmC26EwAOH8WgZl5MYYxFfc+NcPb1dKGj7Sk" crossorigin="anonymous">
+    <title>冷蔵庫マネージャー</title>
+</head>
+
+<body class="bg-light">
+    <!-- <br> -->
+    <!-- <h1>フリー検索</h1> -->
+    <!-- <br> -->
+    <nav class="navbar navbar-default bg-dark">
+        <div class="container-fluid">
+            <a class="navbar-brand text-white">冷蔵庫マネージャー</a>
+            <div class="d-flex" id="navigation">
+                <!-- Rakuten Web Services Attribution Snippet FROM HERE -->
+                <a href="https://webservice.rakuten.co.jp/" target="_blank"><img
+                        src="https://webservice.rakuten.co.jp/img/credit/200709/credit_31130.gif" border="0"
+                        alt="楽天ウェブサービスセンター" title="楽天ウェブサービスセンター" width="311" height="30" /></a>
+                <!-- Rakuten Web Services Attribution Snippet TO HERE -->
+            </div>
+        </div>
+    </nav>
+
+    <div class="border container rounded my-4 bg-white">
+        <h2 class="my-4">食材リスト管理</h2>
+        <div class="form-group row justify-content-center" action="/result" method="get">
+            <div class="form-group col-8 mx-sm-3 mb-2">
+                <input id="material_input" type="text" name="name" placeholder="食材名を入力" class="form-control">
+            </div>
+            <button type="submit" class="btn btn-secondary col-1 mb-2" id="addButton">追加</button>
+        </div>
+        <!-- <hr>
+        <h3>食材リスト</h3> -->
+        <div class="row">
+            <div class="col-md">
+
+                <table class="table table-hover">
+                    <thead class="thead-dark">
+                        <tr>
+                            <th style="width:10%">NG食材</th>
+                            <th style="width:10%">検索対象</th>
+                            <th style="width:65%">食材名</th>
+                            <th style="width:15%"></th>
+                        </tr>
+                    </thead>
+                    <tbody id="table_body">
+                        <tr>
+                            <td><input type="checkbox" name="chk1" value="1"></td>
+                            <td><input type="checkbox" name="chk1" value="2"></td>
+                            <td>テスト1</td>
+                            <td><button type="button" class="btn btn-danger">削除</button>
+                            </td>
+                        </tr>
+                        <tr>
+                            <td><input type="checkbox" name="chk1" value="1"></td>
+                            <td><input type="checkbox" name="chk1" value="2"></td>
+                            <td>テスト2</td>
+                            <td><button type="button" class="btn btn-danger">削除</button>
+                            </td>
+                        </tr>
+
+                        <!-- <tr>
+                            {% for result in results %}
+                        <tr>
+                            <td><a href="recipe?id={{ result.recipe_id }}">{{ result.title }}</a></td>
+                        </tr>
+                        {% endfor %} -->
+                    </tbody>
+                </table>
+            </div>
+        </div>
+        <div class="my-3 text-center">
+            <button type="button" class="btn btn-primary btn-lg">リストの内容で検索する</button>
+
+        </div>
+
+    </div>
+
+    <script>
+        jQuery(function ($) {
+            $('input:checkbox').click(function () {
+                $(this).closest('.table tr').find('input:checkbox').not(this).prop('checked', false);
+            });
+        });
+    </script>
+    <script src="../static/main.js"></script>
+
+
+</body>
+
+</html>

@@ -67,6 +67,37 @@ def recipe():
     finally:
         connection.close()
 
+@app.route('/list')
+def m_list():
+
+    recipeID = request.args.get('id')   # クエリの値取得
+    
+    connection = pymysql.connect(
+        host='database-1.cop2pvzm3623.ap-northeast-1.rds.amazonaws.com',
+        db='groupwork_db',
+        user='test',
+        password='111test',
+        charset='utf8',
+        cursorclass=pymysql.cursors.DictCursor
+    )
+
+    try:
+        with connection.cursor() as cursor:
+            sql = """SELECT distinct material_name, image, indication, cost, url, title FROM material_recipe
+            LEFT JOIN material 
+            ON material_recipe.material_id = material.material_id
+            LEFT JOIN recipe
+            ON material_recipe.recipe_id = recipe.recipe_id
+            WHERE material_recipe.recipe_id = %s"""
+            cursor.execute(sql, recipeID)
+            cursor.close()
+        # Select結果を取り出す
+        results = cursor.fetchall()
+
+        return render_template("recipe.html", results=results)
+    finally:
+        connection.close()
+
 
 if __name__ == '__main__':
     app.debug = True
