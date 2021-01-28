@@ -1,0 +1,190 @@
+body {
+  padding-top: 5%;
+  /*150px bodyを下げる*/
+  background: url(../image/haikei2.jpg)
+}
+
+header {
+  position: fixed;
+  /*headerの固定*/
+  top: 0;
+  left: 10;
+  background-color: rgb(100, 82, 82);
+  width: 100%;
+  /*headerの横の長さ*/
+  height: 10%;
+  /*headerの高さ*/
+  z-index: 20;
+}
+
+/*タイトル冷蔵庫マネージャー　位置カラー ロゴ*/
+.container_1 {
+  font-size: 200%;
+  color: #85c488;
+  white-space: nowrap;
+  text-align: center;
+  background: url(../image/logo2.jpg) no-repeat;
+  padding: 0%;
+  margin-left: 0;
+  overflow: hidden;
+  font-family: "Yu Gothic", "游ゴシック", YuGothic, "游ゴシック体";
+}
+
+
+.textbox {
+  width: 500px;
+  margin-top: 5px;
+  padding: 20px;
+  border: none;
+  font-size: 19px;
+}
+
+/*textbox buttonの位置調整*/
+.kensaku {
+  text-align: center;
+  padding-top: 20px;
+}
+
+/*buttonの大きさ調整*/
+.kensaku_button {
+  border: none;
+  /* 枠線を消す */
+  outline: none;
+  /* クリックしたときに表示される枠線を消す */
+  background: transparent;
+  /* 背景の灰色を消す */
+}
+
+.nav_button {
+  padding: 10px 50px;
+  font-size: 20px;
+}
+
+.syokuzai {
+  position: absolute;
+  top: 15%;
+  right: 10%;
+  display: inline-block;
+  padding: 20px 40px;
+  border-radius: 25px;
+  text-decoration: none;
+  color: #FFF;
+  background-image: linear-gradient(45deg, #FFC107 0%, #ff8b5f 100%);
+  transition: .4s;
+}
+
+.syokuzai:hover {
+  background-image: linear-gradient(45deg, #FFC107 0%, #f76a35 100%);
+}
+
+.sub_title {
+  padding: 2.5% 20%;
+}
+
+table {
+  margin: 100px auto;
+  border-spacing: 50px 10px;
+  position: relative;
+  bottom: 70px;
+}
+
+
+
+table td {
+  /*table内のtdに対して*/
+  padding: 3px 10px;
+  /*上下3pxで左右10px*/
+}
+
+table,
+th,
+td {
+  border: none;
+  font-size: 20px;
+}
+
+.eo {
+  border: none;
+  /* 枠線を消す */
+  outline: none;
+  /* クリックしたときに表示される枠線を消す */
+  background: transparent;
+  /* 背景の灰色を消す */
+}
+
+p {
+  text-align: center;
+  font-size: 80px;
+  font-family: 'Sawarabi Mincho', sans-serif;
+  position: relative;
+}
+
+p:after {
+  content: "";
+  display: block;
+  height: 4px;
+  text-align: center;
+  background: -webkit-linear-gradient(to right, rgb(230, 90, 90), transparent);
+  background: linear-gradient(to right, rgb(230, 90, 90), transparent);
+}
+
+.oomoto {
+  position: relative;
+  bottom: 10px;
+}
+
+.oomoto p {
+  font-size: 50px;
+}
+
+@import url('https://fonts.googleapis.com/css?family=Sawarabi+Mincho');
+
+#contents {
+  width: 1100px;
+  margin: 0 auto;
+  /* background-color: #fff; */
+
+}
+
+#container {
+  display: flex;
+  margin: 0 auto;
+  width: 1000px;
+
+}
+
+#container img {
+  object-fit: cover;
+  width: 100%;
+  height: 80%;
+}
+
+#container ul {
+  list-style-type: none;
+  display: flex;
+  flex-wrap: wrap;
+  padding-left: 0;
+  height: 100%;
+}
+
+#container li {
+  align-items: flex-start;
+  width: calc(33% - 10px);
+  height: 280px;
+  margin: 0 10px 20px 0;
+}
+#container li a {
+  text-align: center;
+}
+
+#container a:link,
+a:visited,
+a:hover,
+a:active {
+  color: black;
+  text-decoration: none;
+}
+
+a {
+  text-decoration: none;
+}

@@ -1,0 +1,82 @@
+<!DOCTYPE html>
+
+<head>
+    <meta charset="utf-8">
+    <title>冷蔵庫マネージャー</title>
+    <meta name="description" content="説明文">
+    <link rel="stylesheet" href="../static/css/reset.css" type="text/css" media="screen">
+    <link rel="stylesheet" href="../static/css/result.css">
+</head>
+
+<header>
+    <div class="container_1">
+        <h1 class="title_1">冷蔵庫 マネージャー</h1>
+    </div>
+    <div class="syokuzai">
+        <a href="/list" class="sab_button">食材管理リスト</a>
+    </div>
+
+    </div>
+    <div class="syokuzai2">
+        <a href="/" class="sab2_button">検索画面</a>
+    </div>
+</header>
+
+<body>
+
+    <body>
+        <p id="result">
+            {% if ng %}
+            検索結果:<strong>{{ name }}(NG:{{ ng }})</strong>
+            {% else %}
+            検索結果:<strong>{{ name }}</strong>
+            {% endif %}
+        </p>
+
+        </div>
+        <div class="table_desighn">
+            <!-- <table border="1">
+                <tr>
+                    <td><img src="..//static/image/resipi.jpg" width="280" height="250"></td>
+                    <td><img src="..//static/image/resipi.jpg" width="280" height="250"></td>
+                    <td><img src="..//static/image/resipi.jpg" width="280" height="250"></td>
+                </tr>
+                <tr>
+                    <th>レシピ名</th>
+                    <th>レシピ名2</th>
+                    <th>レシピ名3</th>
+                </tr>
+                <tr>
+                    <td><img src="..//static/image/gohanmono.jpg" width="280" height="250"></td>
+                    <td><img src="..//static/image/pasuta.jpg" width="280" height="250"></td>
+                    <td><img src="..//static/image/men.jpg" width="280" height="250"></td>
+                </tr>
+                <tr>
+                    <th>レシピ名4</th>
+                    <th>レシピ名5</th>
+                    <th>レシピ名6</th>
+                </tr>
+                <tr>
+                    <td><img src="..//static/image/niku.jpg" width="280" height="250"></td>
+                    <td><img src="..//static/image/sakana.jpg" width="280" height="200"></td>
+                    <td><img src="..//static/image/sarada.jpg" width="280" height="200"></td>
+                </tr>
+            </table> -->
+            <div id="contents">
+
+                <div id="container">
+                    <ul id="ul">
+                        {% for result in results %}
+                        <li>
+                            <a href="recipe?id={{ result.recipe_id }}">
+                                <img src="{{ result.image }}">
+                                <h3>{{ result.title }}</h3>
+                            </a>
+                        </li>
+                        {% endfor %}
+                    </ul>
+                </div>
+            </div>
+
+        </div>
+    </body>
