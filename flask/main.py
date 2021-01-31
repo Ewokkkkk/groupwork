@@ -37,11 +37,30 @@ def result():
                     data = request.args.get("name")
                     d_list = data.split(",")
                     name = data
-                    sql = """SELECT recipe.title, recipe.image, recipe.recipe_id FROM recipe JOIN material_recipe ON 
-                    recipe.recipe_id = material_recipe.recipe_id JOIN material ON material_recipe.material_id
-                    = material.material_id WHERE material.material_name LIKE %s """
+                    sql = """SELECT recipe.title, recipe.image, recipe.recipe_id FROM recipe 
+                    JOIN material_recipe 
+                    ON recipe.recipe_id = material_recipe.recipe_id 
+                    JOIN material 
+                    ON material_recipe.material_id = material.material_id 
+                    WHERE recipe.recipe_id IN 
+                    ( SELECT recipe_id
+                    FROM material_recipe
+                    WHERE material_id IN
+					( SELECT material.material_id
+					FROM material
+					WHERE material_name LIKE %s
+                    ))"""
+                    
                     for i in range(len(d_list)-1):
-                        sql += """OR material.material_name LIKE %s """
+                        sql += """AND recipe.recipe_id IN
+                    ( SELECT recipe_id
+                    FROM material_recipe
+                    WHERE material_id IN
+					( SELECT material.material_id
+					FROM material
+					WHERE material_name LIKE %s
+                    ))"""
+
                     sql += """GROUP BY recipe.title"""
 
                     for i in range(len(d_list)):
@@ -69,6 +88,27 @@ def result():
 					# 	WHERE material_name LIKE %s)
                     # ) AND material.material_name LIKE %s 
                     # GROUP BY recipe.title"""
+                    # sql = """SELECT recipe.title, recipe.image, recipe.recipe_id FROM recipe 
+                    # JOIN material_recipe 
+                    # ON recipe.recipe_id = material_recipe.recipe_id 
+                    # JOIN material 
+                    # ON material_recipe.material_id = material.material_id 
+                    # WHERE recipe.recipe_id NOT IN 
+                    # ( SELECT recipe_id
+                    # FROM material_recipe
+                    # WHERE material_id IN
+					# ( SELECT material.material_id
+					# FROM material
+					# WHERE material_name LIKE %s """
+                    # for i in range(len(d2_list)-1):
+                    #     sql += """ OR material.material_name LIKE %s """
+
+                    # sql += """ )
+                    # ) AND material.material_name LIKE %s """
+
+                    # for i in range(len(d_list)-1):
+                    #     sql += """ OR material.material_name LIKE %s """
+
                     sql = """SELECT recipe.title, recipe.image, recipe.recipe_id FROM recipe 
                     JOIN material_recipe 
                     ON recipe.recipe_id = material_recipe.recipe_id 
@@ -80,15 +120,27 @@ def result():
                     WHERE material_id IN
 					( SELECT material.material_id
 					FROM material
-					WHERE material_name LIKE %s """
-                    for i in range(len(d_list)-1):
-                        sql += """ OR material.material_name LIKE %s """
-
-                    sql += """ )
-                    ) AND material.material_name LIKE %s """
-
+					WHERE material_name LIKE %s
+                    ))"""
                     for i in range(len(d2_list)-1):
-                        sql += """ OR material.material_name LIKE %s """
+                        sql += """AND recipe.recipe_id NOT IN
+                    ( SELECT recipe_id
+                    FROM material_recipe
+                    WHERE material_id IN
+					( SELECT material.material_id
+					FROM material
+					WHERE material_name LIKE %s
+                    ))"""
+
+                    for i in range(len(d_list)):
+                        sql += """AND recipe.recipe_id IN
+                    ( SELECT recipe_id
+                    FROM material_recipe
+                    WHERE material_id IN
+					( SELECT material.material_id
+					FROM material
+					WHERE material_name LIKE %s
+                    ))"""
 
                     for i in range(len(d_list)):
                         d_list[i] = "%" + d_list[i] + "%"
@@ -98,7 +150,7 @@ def result():
                     sql += """GROUP BY recipe.title"""
 
 
-                    print(d2_list + d_list)
+                    print(sql)
                     cursor.execute(sql, d2_list + d_list)
 
             # cursor.execute(sql, data)
