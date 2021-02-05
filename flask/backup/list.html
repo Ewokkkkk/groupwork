@@ -6,7 +6,6 @@
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
     <script type="text/javascript" src="https://code.jquery.com/jquery-3.4.1.min.js"></script>
-    <link rel="stylesheet" href="../static/css/reset.css" type="text/css" media="screen">
 
     <!-- Bootstrap CSS -->
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.0/css/bootstrap.min.css"
@@ -16,19 +15,22 @@
     <title>冷蔵庫マネージャー</title>
 </head>
 
-
-
 <body class="bg-light">
-    
-    <header>
-        <div class="container_1">
-            <h1 class="title_1">冷蔵庫 マネージャー</h1>
+    <!-- <br> -->
+    <!-- <h1>フリー検索</h1> -->
+    <!-- <br> -->
+    <nav class="navbar navbar-default bg-dark">
+        <div class="container-fluid">
+            <a class="navbar-brand text-white">冷蔵庫マネージャー</a>
+            <div class="d-flex" id="navigation">
+                <!-- Rakuten Web Services Attribution Snippet FROM HERE -->
+                <a href="https://webservice.rakuten.co.jp/" target="_blank"><img
+                        src="https://webservice.rakuten.co.jp/img/credit/200709/credit_31130.gif" border="0"
+                        alt="楽天ウェブサービスセンター" title="楽天ウェブサービスセンター" width="311" height="30" /></a>
+                <!-- Rakuten Web Services Attribution Snippet TO HERE -->
+            </div>
         </div>
-        <div class="syokuzai">
-            <a href="/" class="sab_button">検索画面</a>
-        </div>
-        </div>
-    </header>
+    </nav>
 
     <div class="border container rounded my-4 bg-white">
         <h2 class="my-4">食材リスト管理</h2>
@@ -80,7 +82,17 @@
         </div>
 
     </div>
+
+    <script>
+        // jQuery(function ($) {
+        //     $('input:checkbox').click(function () {
+        //         $(this).closest('.table tr').find('input:checkbox').not(this).prop('checked', false);
+        //     });
+        // });
+    </script>
     <script src="../static/js/list.js"></script>
+
+
 </body>
 
 </html>
