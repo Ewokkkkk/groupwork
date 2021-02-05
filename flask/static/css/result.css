@@ -19,7 +19,7 @@ header {
 
 /*タイトル冷蔵庫マネージャー　位置カラー ロゴ*/
 .container_1 {
-  font-size: 200%;
+  font-size: 100%;
   color: #85c488;
   white-space: nowrap;
   text-align: center;
@@ -29,7 +29,13 @@ header {
   overflow: hidden;
   font-family: "Yu Gothic", "游ゴシック", YuGothic, "游ゴシック体";
 }
-
+header h1 {
+  font-size: 64px;
+  font-weight: 700;
+  text-align: center;
+  padding: auto;
+  /* font-family: "Yu Gothic", "游ゴシック", YuGothic, "游ゴシック体"; */
+}
 
 .textbox {
   width: 500px;
@@ -190,12 +196,5 @@ a:hover,
 a:active,
 a {
   color: black;
-  text-decoration: none;
-}
-
-.syokuzai a{
-  text-decoration: none;
-}
-.syokuzai2 a {
   text-decoration: none;
 }
