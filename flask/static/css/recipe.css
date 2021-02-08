@@ -72,10 +72,10 @@ header h1 {
   transition: .4s;
 }
 
-#container a:link,
-a:visited,
-a:hover,
-a:active,
+header a:link,
+header a:visited,
+header a:hover,
+header a:active,
 header a {
   color: black;
   text-decoration: none;
