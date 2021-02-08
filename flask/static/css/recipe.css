@@ -76,7 +76,7 @@ header h1 {
 a:visited,
 a:hover,
 a:active,
-a {
+header a {
   color: black;
   text-decoration: none;
 }
